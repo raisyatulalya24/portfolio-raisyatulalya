@@ -308,3 +308,129 @@ section{
     text-align: center;
   }
 }
+/* ===== GLOBAL FIX (WAJIB BANGET) ===== */
+html, body{
+  overflow-x: hidden;
+}
+
+/* biar semua ga melebar liar */
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== CONTAINER BIAR RAPI ===== */
+.container{
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* semua section dikunci */
+section{
+  width: 100%;
+}
+
+/* ===== MOBILE FIX TOTAL ===== */
+@media (max-width: 768px){
+
+  body{
+    font-size: 14px;
+  }
+
+  /* NAV */
+  .nav{
+    padding: 15px 20px;
+  }
+
+  /* HERO FIX */
+  .hero{
+    padding: 40px 20px;
+  }
+
+  .hero-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .hero-left{
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-left h1{
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .hero-left p{
+    font-size: 14px;
+  }
+
+  .hero-right img{
+    width: 200px;
+    margin: auto;
+  }
+
+  /* ABOUT */
+  .about{
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  /* 🔥 PROJECT FIX (INI YANG NGILANGIN "BROSUR") */
+  .project-card{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    margin: 20px;
+    padding: 20px;
+
+    border-radius: 15px;
+  }
+
+  .project-img{
+    width: 100%;
+    height: auto;
+  }
+
+  .project-text{
+    max-width: 100%;
+  }
+
+  .project-text h3{
+    font-size: 18px;
+  }
+
+  .project-text p,
+  .project-text li{
+    font-size: 13px;
+  }
+
+  /* SPACING BIAR GA NUMPUK */
+  section{
+    margin-bottom: 60px;
+  }
+
+  /* SKILLS */
+  .skills{
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .skill-box{
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  /* CONTACT */
+  .contact{
+    padding: 25px;
+    text-align: center;
+  }
+}
