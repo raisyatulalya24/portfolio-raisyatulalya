@@ -235,3 +235,76 @@ body{
 section{
   margin-bottom:40px;
 }
+/* ===== RESPONSIVE (HP FIX TOTAL) ===== */
+@media (max-width: 768px){
+
+  /* NAV */
+  .nav{
+    padding: 15px 20px;
+  }
+
+  /* HERO */
+  .hero-flex{
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-left{
+    max-width: 100%;
+  }
+
+  .hero-left h1{
+    font-size: 28px;
+  }
+
+  .hero-left p{
+    font-size: 14px;
+  }
+
+  .hero-right img{
+    width: 180px;
+  }
+
+  /* ABOUT */
+  .about{
+    padding: 0 20px;
+  }
+
+  /* PROJECT CARD (INI YANG PALING PENTING 🔥) */
+  .project-card{
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .project-img{
+    width: 100%;
+    height: auto;
+  }
+
+  .project-text{
+    max-width: 100%;
+  }
+
+  /* BIAR GA KELIATAN SEMUA SEKALIGUS */
+  section{
+    margin-bottom: 60px;
+  }
+
+  /* SKILLS */
+  .skills{
+    padding: 0 20px;
+  }
+
+  .skill-box{
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  /* CONTACT */
+  .contact{
+    padding: 20px;
+    text-align: center;
+  }
+}
