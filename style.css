@@ -170,3 +170,68 @@ body{
   opacity:1 !important;
   transform:translateY(0) !important;
 }
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px){
+
+  /* HERO */
+  .hero-flex{
+    flex-direction: column;
+    text-align: center;
+    gap:20px;
+  }
+
+  .hero-left{
+    width:100%;
+  }
+
+  .hero-right img{
+    width:160px;
+  }
+
+  /* PROJECT */
+  .project-card{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-img{
+    width:100%;
+    height:180px;
+  }
+
+  .project-text{
+    max-width:100%;
+  }
+
+  /* SKILLS */
+  .skills{
+    justify-content:center;
+  }
+
+}
+.contact-btns{
+  margin-top:15px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn-contact{
+  background:#f5f0e6;
+  color:#6b4f3b;
+  padding:10px 16px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.btn-contact:hover{
+  background:#e6dfd3;
+  transform:translateY(-2px);
+}
+
+section{
+  margin-bottom:40px;
+}
