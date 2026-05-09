@@ -17,7 +17,7 @@ document.querySelectorAll('a').forEach(anchor=>{
 // ===== ANIMATION ON SCROLL =====
 const cards = document.querySelectorAll(".project-card");
 
-window.addEventListener("scroll", ()=>{
+function revealCards(){
   cards.forEach(card=>{
     const top = card.getBoundingClientRect().top;
 
@@ -25,7 +25,10 @@ window.addEventListener("scroll", ()=>{
       card.classList.add("show");
     }
   });
-});
+}
 
-// trigger awal biar langsung muncul
-window.dispatchEvent(new Event('scroll'));
+// scroll event
+window.addEventListener("scroll", revealCards);
+
+// langsung jalan saat load (INI YANG FIX)
+window.addEventListener("load", revealCards);
