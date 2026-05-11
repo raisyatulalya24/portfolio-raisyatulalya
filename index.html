@@ -1,154 +1,432 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raisyatul Alya</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Portfolio</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Remix Icon -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<header class="nav">
-  <h2>Raisyatul Alya</h2>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#project">Project</a>
-    <a href="#contact">Contact</a>
-  </div>
-</header>
+  <!-- BACKGROUND GLOW -->
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
 
-<!-- ===== HERO ===== -->
-<section id="home" class="hero">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-  <div class="hero-left">
-  <h1>Hi, I'm Raisya</h1>
-  <p>Saya membuat website interaktif yang sederhana dan nyaman digunakan.</p>
-  </div>
+    <div class="logo">
+      <span>R</span>A
+    </div>
 
-  <div class="hero-right">
-    <img src="ayaa.png" alt="Raisya Photo">
-  </div>
+    <nav class="nav-links">
 
-</section>
+      <a href="#home" class="active">
+        <i class="ri-home-5-line"></i>
+        <span>Home</span>
+      </a>
 
-<!-- ===== ABOUT ===== -->
-<section class="about">
-<h2>About Me</h2>
-<p>
-  Saya mahasiswa informatika yang tertarik membuat website interaktif dengan tampilan yang bersih dan nyaman digunakan.
-  Saya menikmati proses mengubah ide menjadi tampilan yang bisa langsung digunakan oleh user.
-</p>
-</section>
+      <a href="#about">
+        <i class="ri-user-3-line"></i>
+        <span>About</span>
+      </a>
 
-<!-- ===== PROJECT ===== -->
-<section id="project">
+      <a href="#skills">
+        <i class="ri-code-box-line"></i>
+        <span>Skills</span>
+      </a>
 
-  <h2 style="margin-left:80px;">Featured Project</h2>
+      <a href="#projects">
+        <i class="ri-layout-grid-line"></i>
+        <span>Projects</span>
+      </a>
 
-  <!-- CASA VELA -->
-  <div class="project-card">
-    <img src="casavela.jpg" class="project-img">
+      <a href="#experience">
+        <i class="ri-briefcase-line"></i>
+        <span>Experience</span>
+      </a>
 
-    <div class="project-text">
-      <h3>CasaVela Interior Design</h3>
+      <a href="#contact">
+        <i class="ri-mail-line"></i>
+        <span>Contact</span>
+      </a>
+
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- HERO -->
+    <section class="hero glass" id="home">
+
+      <div class="hero-left">
+
+        <p class="hero-small">Hello, I'm</p>
+
+        <h1>
+          Raisyatul Alya
+        </h1>
+
+        <h2>
+          Informatics Engineering Student &
+          <br>
+          Web Developer
+        </h2>
+
+        <p class="hero-description">
+          I'm passionate about building web applications that are not only functional
+          but also provide great user experiences with modern technology and clean design.
+        </p>
+
+        <div class="hero-buttons">
+
+        <a href="#contact" class="primary-btn">
+            Contact Me
+            <i class="ri-arrow-right-line"></i>
+        </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-right">
+
+        <div class="code-bg">
+          const developer = { <br>
+          &nbsp;&nbsp;name: "Raisyatul Alya", <br>
+          &nbsp;&nbsp;role: "Web Developer", <br>
+          &nbsp;&nbsp;passion: "Building something cool" <br>
+          }
+        </div>
+
+        <img
+          src="ayaa.png"
+          alt="profile"
+        />
+
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about glass" id="about">
+
+      <div class="section-title">
+        <span>ABOUT ME</span>
+        <h2>Get to know me</h2>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-text">
+
+          <p>
+           Saya merupakan mahasiswa Teknik Informatika yang memiliki minat pada pengembangan website, terutama di bidang frontend dan desain antarmuka. Saya tertarik membuat tampilan website yang modern, rapi, serta nyaman digunakan.
+          </p>
+
+          <p>
+           Melalui beberapa project yang telah dikerjakan, saya terus belajar dan mengembangkan kemampuan dalam coding, desain, dan pembuatan website yang responsif serta interaktif.
+          </p>
+
+        </div>
+
+        <div class="about-info">
+
+          <div class="info-item">
+            <i class="ri-user-line"></i>
+            <div>
+              <span>Name</span>
+              <h4>Raisyatul Alya</h4>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="ri-map-pin-line"></i>
+            <div>
+              <span>Location</span>
+              <h4>Aceh, Indonesia</h4>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="ri-graduation-cap-line"></i>
+            <div>
+              <span>Education</span>
+              <h4>Informatics Engineering</h4>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="ri-mail-line"></i>
+            <div>
+              <span>Email</span>
+              <h4>raisyatulalya6@gmail.com</h4>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="stats-card">
+
+          <div class="stat-box">
+            <h3>1+</h3>
+            <p>Years Learning</p>
+          </div>
+
+          <div class="stat-box">
+            <h3>2+</h3>
+            <p>Projects Completed</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills glass" id="skills">
+
+      <div class="section-title">
+        <span>SKILLS</span>
+        <h2>Technologies I Use</h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <i class="ri-html5-fill"></i>
+          <p>HTML</p>
+        </div>
+
+        <div class="skill-card">
+          <i class="ri-css3-fill"></i>
+          <p>CSS</p>
+        </div>
+
+        <div class="skill-card">
+          <i class="ri-javascript-fill"></i>
+          <p>JavaScript</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects glass" id="projects">
+
+      <div class="projects-header">
+
+        <div class="section-title">
+          <span>PROJECTS</span>
+          <h2>Some Things I've Built</h2>
+        </div>
+
+        <a href="#">
+          View All Projects
+          <i class="ri-arrow-right-line"></i>
+        </a>
+
+      </div>
+
+        <!-- CARD -->
+       <a
+    href="https://raisyatulalya24.github.io/todoist/"
+    target="_blank"
+    class="project-card"
+    >
+
+    <img
+        src="todoist.png"
+        alt=""
+    />
+
+    <div class="project-content">
+
+        <div class="project-top">
+        <h3>Habit Tracker</h3>
+        <i class="ri-external-link-line"></i>
+    </div>
+
+            <p>
+            Website to-do list modern dengan tampilan clean dan interaktif untuk membantu mengatur aktivitas harian, target, dan produktivitas secara lebih rapi dan efisien.
+
+            </p>
+
+            <div class="badges">
+            <span>journaling dashboard</span>
+            <span>sleep tracker</span>
+            <span>pomodoro time</span>
+            </div>
+
+        </div>
+
+        </a>
+
+            <a
+        href="https://raisyatulalya24.github.io/casavela-interior-design/"
+        target="_blank"
+        class="project-card"
+        >
+
+        <img
+            src="casavela.jpg"
+            alt=""
+        />
+
+        <div class="project-content">
+
+            <div class="project-top">
+            <h3>Desain Interior</h3>
+            <i class="ri-external-link-line"></i>
+            </div>
+
+            <p>
+                Website desain interior dengan tampilan modern dan elegan yang menampilkan berbagai inspirasi ruangan menggunakan konsep visual minimalis dan premium.
+            </p>
+
+            <div class="badges">
+            <span>Luxury Layout</span>
+            <span>Glassmorphism</span>
+            <span>Interactive UI</span>
+            </div>
+
+        </div>
+
+        </a>
+
+        <a
+        href="https://raisyatulalya24.github.io/webkel-rpl/"
+        target="_blank"
+        class="project-card"
+        >
+
+        <img
+            src="anime.jpg"
+            alt=""
+        />
+
+        <div class="project-content">
+
+            <div class="project-top">
+            <h3>Anime Streaming Platform</h3>
+            <i class="ri-external-link-line"></i>
+            </div>
+
+            <p>
+            Website streaming anime dengan tampilan modern dan penyusunan konten yg terstruktur.
+            </p>
+
+            <div class="badges">
+            <span>catagory populer7top rating</span>
+            <span>Interactive homepage UI</span>
+            </div>
+
+        </div>
+
+        </a>
+
+
+    <!-- EXPERIENCE -->
+    <section class="experience glass" id="experience">
+
+      <div class="section-title">
+        <span>EXPERIENCE</span>
+        <h2>My Journey</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-card">
+
+          <span class="year">2024 - Present</span>
+
+          <h3>Informatics Engineering Student</h3>
+
+          <p>
+            Learning software engineering, algorithms, databases,
+            and modern frontend development.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+<section class="contact glass" id="contact">
+
+  <div class="contact-text">
+
+    <span>CONTACT</span>
+
+    <h2>Let's Work Together!</h2>
+
     <p>
-      Website interaktif untuk membantu pengguna mendesain ruangan secara visual dengan sistem drag & drop.
+      Feel free to contact me for collaboration,
+      freelance, or project discussion.
     </p>
 
-    <ul>
-      <li>Fitur drag & drop furniture</li>
-      <li>Resize dan pengaturan layer</li>
-      <li>Menyimpan hasil desain ke galeri</li>
-      <li>Eksplorasi kombinasi warna</li>
-    </ul>
+  </div>
 
-    <a href="https://raisyatulalya24.github.io/casavela-interior-design/" target="_blank">
-      Lihat Project →
+  <div class="contact-buttons">
+
+    <!-- WHATSAPP -->
+    <a
+      href="https://wa.me/6285373158760"
+      target="_blank"
+      class="primary-btn"
+    >
+      <i class="ri-whatsapp-line"></i>
+      WhatsApp
     </a>
-     
-    </div>
-  </div>
 
-  <!-- OTHER PROJECT -->
-  <h2 style="margin-left:80px;">Other Project</h2>
+    <!-- INSTAGRAM -->
+    <a
+      href="https://www.instagram.com/raisyatullya?igsh=c3R5bWF1MXE5dg=="
+      target="_blank"
+      class="secondary-btn"
+    >
+      <i class="ri-instagram-line"></i>
+      Instagram
+    </a>
 
-  <div class="project-card">
-    <img src="anime.jpg" class="project-img">
+    <!-- EMAIL -->
+    <a
+      href="mailto:raisyatulalya6@gmail.com"
+      class="secondary-btn"
+    >
+      <i class="ri-mail-line"></i>
+      Email
+    </a>
 
-    <div class="project-text">
-      <h3>Website Streaming Anime</h3>
-      <p>
-        Website streaming anime dengan tampilan modern dan penyusunan konten yang terstruktur.
-      </p>
-
-      <ul>
-        <li>Kategori seperti Popular dan Top Rating</li>
-        <li>Tampilan homepage yang interaktif</li>
-        <li>Desain responsif untuk berbagai ukuran layar</li>
-      </ul>
-
-      <a href="https://raisyatulalya24.github.io/webkel-rpl/" target="_blank">
-        Lihat Project →
-      </a>
-    </div>
-  </div>
-
-    <h2 style="margin-left:80px;">Other Project</h2>
-  <div class="project-card">
-    <img src="todoist.jpg" class="project-img">
-
-    <div class="project-text">
-      <h3>Modern Habit tracker</h3>
-      <p>
-        A calming self-growth dashboard designed to help users build healthy habits, reflect through journaling, track productivity, and stay consistent with daily routines — wrapped in a soft botanical glassmorphism interface.
-      </p>
-
-      <ul>
-        <li>pomodoro time</li>
-        <li>journaling dashboard</li>
-        <li>sleep tracker</li>
-      </ul>
-
-      <a href="https://raisyatulalya24.github.io/todoist/" target="_blank">
-        Lihat Project →
-      </a>
-    </div>
   </div>
 
 </section>
 
-<!-- ===== SKILLS ===== -->
-<section class="skills">
-  <h2>Skills</h2>
+  </main>
 
-  <div>
-    <span class="skill-box">HTML</span>
-    <span class="skill-box">CSS</span>
-    <span class="skill-box">JavaScript</span>
-    <span class="skill-box">UI Design</span>
-    <span class="skill-box">UX Thinking</span>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section class="contact" id="contact">
-  <h2>Let’s work together</h2>
-
-  <div class="contact-btns">
-    <a href="https://wa.me/qr/U7Y2JQAVNF5QI1" target="_blank" class="btn-contact">
-      Chat WhatsApp
-    </a>
-
-    <a href="https://www.instagram.com/raisyatullya?igsh=MXFhZ3p2MWl1azlqMQ==" target="_blank" class="btn-contact">
-      Visit Instagram
-    </a>
-  </div>
-</section>
-
-<!-- JS -->
-<script src="script.js"></script>
+  <!-- JS -->
+  <script src="script.js"></script>
 
 </body>
 </html>
