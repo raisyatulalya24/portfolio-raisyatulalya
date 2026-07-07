@@ -378,9 +378,9 @@ section{
     position:absolute;
     top:12px;
     right:12px;
-
-    width:32px;
-    height:32px;
+    width:28px;
+    height:28px;
+    font-size:.9rem;
 
     display:flex;
     justify-content:center;
