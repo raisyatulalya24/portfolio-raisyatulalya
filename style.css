@@ -376,32 +376,41 @@ section{
 
 .github-btn{
     position:absolute;
-    top:14px;
-    right:14px;
-    width:42px;
-    height:42px;
+    top:12px;
+    right:12px;
+
+    width:32px;
+    height:32px;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
     border-radius:50%;
-    background:rgba(15,23,42,.85);
-    backdrop-filter:blur(12px);
+    background:rgba(4,8,22,.8);
 
     color:white;
     text-decoration:none;
-    font-size:1.25rem;
+    font-size:1rem;
 
-    z-index:20;
+    opacity:0;
+    transform:translateY(-8px);
 
     transition:.3s;
+
+    z-index:100;
+}
+
+.project-card-wrapper:hover .github-btn{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .github-btn:hover{
-    transform:scale(1.1);
-    background:#7C5CFA;
+    background:#4f7cff;
 }
+
+
 .project-card:hover{
 
   transform:
