@@ -1,496 +1,1555 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developer Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raisyatul Alya — Frontend Developer</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Remix Icon -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
+<!-- Icons -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   RESET & VARIABLES
+   ══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --black: #08080a;
+  --black-2: #0f0f12;
+  --black-3: #16161a;
+  --gold: #c9a44c;
+  --gold-bright: #e6c76a;
+  --gold-deep: #9a7a2e;
+  --champagne: #f0e0b8;
+  --cream: #f5f2eb;
+  --text: #ececec;
+  --text-dim: #8a8a8f;
+  --line: rgba(201, 164, 76, 0.18);
+  --line-bright: rgba(201, 164, 76, 0.4);
+  --ff-serif: 'Playfair Display', serif;
+  --ff-sans: 'Space Grotesk', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--black);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Noise texture overlay untuk kesan premium */
+body::before {
+  content:'';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+::selection { background: var(--gold); color: var(--black); }
+
+/* Scrollbar custom */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ══════════════════════════════════════════
+   GOLD GRADIENT TEXT
+   ══════════════════════════════════════════ */
+.gold-text {
+  background: linear-gradient(135deg, var(--champagne) 0%, var(--gold-bright) 40%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION — TOP BAR ELEGAN
+   ══════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8, 8, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: all 0.5s var(--ease);
+}
+
+.nav.scrolled {
+  padding: 1rem 4rem;
+  background: rgba(8, 8, 10, 0.95);
+}
+
+.nav-brand {
+  font-family: var(--ff-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-brand .dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--gold);
+}
+
+.nav-brand span {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-menu a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.3s var(--ease);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-menu a::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: -15px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transform: translateY(-50%);
+  transition: width 0.3s var(--ease);
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--gold);
+}
+
+.nav-menu a:hover::before,
+.nav-menu a.active::before {
+  width: 8px;
+}
+
+.nav-cta {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--line-bright);
+  border-radius: 40px;
+  color: var(--gold);
+  transition: all 0.4s var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(201, 164, 76, 0.4);
+}
+
+/* ══════════════════════════════════════════
+   HERO — FULL SCREEN EDITORIAL
+   ══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent, var(--gold-deep), transparent);
+  opacity: 0.4;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 20%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201, 164, 76, 0.12) 0%, transparent 60%);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-meta {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-meta::before {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 2rem;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .italic {
+  font-style: italic;
+  font-weight: 400;
+  padding-left: 2rem;
+  color: var(--text-dim);
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  max-width: 500px;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2.2rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  color: var(--black);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: all 0.4s var(--ease);
+  box-shadow: 0 0 0 rgba(201, 164, 76, 0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(201, 164, 76, 0.35);
+}
+
+.btn-primary i {
+  transition: transform 0.4s var(--ease);
+}
+
+.btn-primary:hover i {
+  transform: translateX(5px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2.2rem;
+  color: var(--text);
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  transition: all 0.4s var(--ease);
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual .frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3/4;
+  border-radius: 4px;
+}
+
+.hero-visual .frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px -12px 12px 12px;
+  border: 1px solid var(--gold-deep);
+  border-radius: 4px;
+  z-index: 0;
+  transition: all 0.6s var(--ease);
+}
+
+.hero-visual:hover .frame::before {
+  inset: -20px -20px 20px 20px;
+}
+
+.hero-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 15% center;  /* ← TAMBAHKAN INI */
+  border-radius: 4px;
+  filter: grayscale(20%) contrast(1.05);
+  position: relative;
+  z-index: 1;
+  transition: filter 0.6s var(--ease);
+}
+
+.hero-visual:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+.hero-visual .badge {
+  position: absolute;
+  bottom: -30px; left: -30px;
+  background: rgba(15, 15, 18, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  padding: 1.2rem 1.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--champagne);
+  line-height: 1.8;
+  z-index: 3;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+.badge .key { color: var(--gold-bright); }
+
+/* Marquee bawah hero */
+.marquee {
+  margin-top: 5rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 1.5rem 0;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  font-family: var(--ff-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.marquee-item::after {
+  content: '✦';
+  color: var(--gold);
+  font-style: normal;
+  font-size: 1rem;
+}
+
+/* ══════════════════════════════════════════
+   SECTION BASE
+   ══════════════════════════════════════════ */
+.section {
+  padding: 8rem 4rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 4rem;
+  max-width: 800px;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT
+   ══════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.9;
+}
+
+.about-text p:first-of-type::first-letter {
+  font-family: var(--ff-serif);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.9;
+  padding-right: 0.8rem;
+  padding-top: 0.4rem;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.about-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: all 0.4s var(--ease);
+}
+
+.info-row:hover {
+  padding-left: 1rem;
+  border-bottom-color: var(--gold);
+}
+
+.info-row .label {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.info-row .value {
+  font-family: var(--ff-serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  text-align: right;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+  grid-column: 1 / -1;
+}
+
+.stat {
+  text-align: left;
+}
+
+.stat .num {
+  font-family: var(--ff-serif);
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  font-style: italic;
+}
+
+.stat .desc {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+}
+
+/* ══════════════════════════════════════════
+   SKILLS
+   ══════════════════════════════════════════ */
+.skills-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.skill {
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--black-2);
+  transition: all 0.5s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(201,164,76,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.skill:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+}
+
+.skill:hover::before { opacity: 1; }
+
+.skill i {
+  font-size: 1.8rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.skill .name {
+  font-family: var(--ff-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.skill .sub {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   PROJECTS — BENTO GRID
+   ══════════════════════════════════════════ */
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.projects-header .section-title { margin-bottom: 0; }
+
+.view-all {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line-bright);
+  transition: all 0.4s var(--ease);
+  white-space: nowrap;
+}
+
+.view-all:hover { gap: 1.2rem; border-bottom-color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   PROJECTS — UNIFORM EDITORIAL GRID
+   ══════════════════════════════════════════ */
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+/* ── CARD BASE ── */
+.card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--black-2);
+  transition: all 0.5s var(--ease);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(201, 164, 76, 0.12);
+}
+
+/* ── CARD NUMBER (01, 02, 03...) ── */
+.card-num {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  color: var(--champagne);
+  z-index: 4;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 8, 10, 0.55);
+  transition: all 0.4s var(--ease);
+}
+
+.card:hover .card-num {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(8, 8, 10, 0.85);
+}
+
+/* ── GITHUB BUTTON ── */
+.card-github {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(8, 8, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1rem;
+  z-index: 5;
+  transition: all 0.4s var(--ease);
+}
+
+.card-github:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* ── IMAGE ── */
+.card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--black-3);
+  flex-shrink: 0;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(40%) brightness(0.85);
+  transition: all 0.9s var(--ease);
+}
+
+.card:hover .card-img img {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.08);
+}
+
+/* Gradient overlay dari gambar ke body */
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--black-2) 0%,
+    rgba(15, 15, 18, 0.4) 40%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Garis emas animasi saat hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--champagne));
+  transition: width 0.6s var(--ease);
+  z-index: 6;
+}
+
+.card:hover::before {
+  width: 100%;
+}
+
+/* ── BODY ── */
+.card-body {
+  padding: 1.5rem 1.6rem 1.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  flex: 1;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card-title {
+  font-family: var(--ff-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  transition: color 0.4s var(--ease);
+}
+
+.card:hover .card-title {
+  color: var(--gold);
+}
+
+.card-arrow {
+  color: var(--gold);
+  font-size: 1rem;
+  transition: transform 0.4s var(--ease);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+  opacity: 0.6;
+}
+
+.card:hover .card-arrow {
+  transform: translate(4px, -4px);
+  opacity: 1;
+}
+
+.card-desc {
+  font-size: 0.83rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── TAGS ── */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.tag {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--champagne);
+  background: rgba(201, 164, 76, 0.04);
+  transition: all 0.3s var(--ease);
+}
+
+.card:hover .tag {
+  border-color: var(--gold-deep);
+  color: var(--gold);
+  background: rgba(201, 164, 76, 0.1);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .bento {
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+  }
+  .card-title {
+    font-size: 1.2rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   EXPERIENCE / TIMELINE
+   ══════════════════════════════════════════ */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem; bottom: 0; left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold-deep), transparent);
+}
+
+.tl-item {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -3rem;
+  top: 0.5rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 164, 76, 0.15), 0 0 20px var(--gold);
+  transform: translateX(-4.5px);
+}
+
+.tl-year {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.tl-title {
+  font-family: var(--ff-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+
+.tl-desc {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════════
+   CONTACT
+   ══════════════════════════════════════════ */
+.contact {
+  text-align: center;
+  padding: 8rem 4rem;
+  position: relative;
+}
+
+.contact-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -3px;
+  margin-bottom: 2.5rem;
+}
+
+.contact-title em {
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+  color: var(--gold);
+}
+
+.contact-sub {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto 4rem;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.4s var(--ease);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.contact-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.contact-link.gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+.contact-link.gold:hover {
+  color: var(--black);
+  box-shadow: 0 15px 40px rgba(201, 164, 76, 0.35);
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer {
+  padding: 2.5rem 4rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .heart { color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .nav { padding: 1.2rem 2rem; }
+  .nav.scrolled { padding: 0.9rem 2rem; }
+  .nav-menu { display: none; }
+  .hero { padding: 7rem 2rem 3rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { max-width: 400px; margin: 0 auto; }
+  .section { padding: 5rem 2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+  }
+  .card.featured,
+  .card.large { grid-column: span 2; grid-row: span 1; }
+  .card.medium,
+  .card.small,
+  .card.wide { grid-column: span 1; }
+  .contact { padding: 6rem 2rem; }
+  footer { padding: 2rem; flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .nav-brand span { display: none; }
+  .nav-cta span { display: none; }
+  .nav-cta { padding: 0.7rem 1rem; }
+  .hero-title { letter-spacing: -1.5px; }
+  .hero-title .italic { padding-left: 1rem; }
+  .hero-visual .badge { left: -10px; bottom: -20px; padding: 0.8rem 1rem; font-size: 0.65rem; }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+  .card.featured,
+  .card.large,
+  .card.medium,
+  .card.small,
+  .card.wide { grid-column: span 1; grid-row: span 1; }
+  .card.featured .card-title { font-size: 1.3rem; }
+  .stats-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .marquee-item { font-size: 1.1rem; gap: 2.5rem; }
+  .contact-links { flex-direction: column; }
+  .contact-link { justify-content: center; }
+}
+</style>
 </head>
-
 <body>
 
-  <!-- BACKGROUND GLOW -->
-  <div class="bg-glow glow-1"></div>
-  <div class="bg-glow glow-2"></div>
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <span class="dot"></span>
+    Raisyatul Alya <span>— Frontend Dev</span>
+  </div>
+  <ul class="nav-menu">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Journey</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    Let's Talk <i class="ri-arrow-right-line"></i>
+  </a>
+</nav>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <div class="logo">
-      <span>R</span>A
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-meta">Portfolio — 2025</div>
+      <h1 class="hero-title">
+        <span class="line">Designing</span>
+        <span class="line italic gold-text">digital stories</span>
+        <span class="line">with code.</span>
+      </h1>
+      <p class="hero-desc">
+        Informatics Engineering student & frontend developer based in Aceh, Indonesia. 
+        I craft responsive, elegant web experiences that feel as good as they look.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">
+          Explore My Work <i class="ri-arrow-right-line"></i>
+        </a>
+        <a href="#contact" class="btn-ghost">
+          <i class="ri-mail-send-line"></i> Get in Touch
+        </a>
+      </div>
     </div>
 
-    <nav class="nav-links">
-
-      <a href="#home" class="active">
-        <i class="ri-home-5-line"></i>
-        <span>Home</span>
-      </a>
-
-      <a href="#about">
-        <i class="ri-user-3-line"></i>
-        <span>About</span>
-      </a>
-
-      <a href="#skills">
-        <i class="ri-code-box-line"></i>
-        <span>Skills</span>
-      </a>
-
-      <a href="#projects">
-        <i class="ri-layout-grid-line"></i>
-        <span>Projects</span>
-      </a>
-
-      <a href="#experience">
-        <i class="ri-briefcase-line"></i>
-        <span>Experience</span>
-      </a>
-
-      <a href="#contact">
-        <i class="ri-mail-line"></i>
-        <span>Contact</span>
-      </a>
-
-    </nav>
-
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main-content">
-
-    <!-- HERO -->
-    <section class="hero glass" id="home">
-
-      <div class="hero-left">
-
-        <p class="hero-small">Hello, I'm</p>
-
-        <h1>
-          Raisyatul Alya
-        </h1>
-
-        <h2>
-          Informatics Engineering Student &
-          <br>
-          Web Developer
-        </h2>
-
-        <p class="hero-description">
-          I'm passionate about building web applications that are not only functional
-          but also provide great user experiences with modern technology and clean design.
-        </p>
-
-        <div class="hero-buttons">
-
-        <a href="#contact" class="primary-btn">
-            Contact Me
-            <i class="ri-arrow-right-line"></i>
-        </a>
-
-        </div>
-
-      </div>
-
-      <div class="hero-right">
-
-        <div class="code-bg">
-          const developer = { <br>
-          &nbsp;&nbsp;name: "Raisyatul Alya", <br>
-          &nbsp;&nbsp;role: "Web Developer", <br>
-          &nbsp;&nbsp;passion: "Building something cool" <br>
+    <div class="hero-visual">
+      <div class="frame">
+        <!-- GANTI FOTO PROFIL DI SINI -->
+        <img src="ayaa.png" alt="Raisyatul Alya" />
+        <div class="badge">
+          <span class="key">const</span> dev = {<br>
+          &nbsp;&nbsp;name: "Raisyatul Alya",<br>
+          &nbsp;&nbsp;role: "Frontend Developer"<br>
           }
         </div>
-
-        <img
-          src="ayaa.png"
-          alt="profile"
-        />
-
       </div>
-
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about glass" id="about">
-
-      <div class="section-title">
-        <span>ABOUT ME</span>
-        <h2>Get to know me</h2>
-      </div>
-
-      <div class="about-grid">
-
-        <div class="about-text">
-
-          <p>
-           Saya merupakan mahasiswa Teknik Informatika yang memiliki minat pada pengembangan website, terutama di bidang frontend dan desain antarmuka. Saya tertarik membuat tampilan website yang modern, rapi, serta nyaman digunakan.
-          </p>
-
-          <p>
-           Melalui beberapa project yang telah dikerjakan, saya terus belajar dan mengembangkan kemampuan dalam coding, desain, dan pembuatan website yang responsif serta interaktif.
-          </p>
-
-        </div>
-
-        <div class="about-info">
-
-          <div class="info-item">
-            <i class="ri-user-line"></i>
-            <div>
-              <span>Name</span>
-              <h4>Raisyatul Alya</h4>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <i class="ri-map-pin-line"></i>
-            <div>
-              <span>Location</span>
-              <h4>Aceh, Indonesia</h4>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <i class="ri-graduation-cap-line"></i>
-            <div>
-              <span>Education</span>
-              <h4>Informatics Engineering</h4>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <i class="ri-mail-line"></i>
-            <div>
-              <span>Email</span>
-              <h4>raisyatulalya6@gmail.com</h4>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="stats-card">
-
-          <div class="stat-box">
-            <h3>1+</h3>
-            <p>Years Learning</p>
-          </div>
-
-          <div class="stat-box">
-            <h3>2+</h3>
-            <p>Projects Completed</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SKILLS -->
-    <section class="skills glass" id="skills">
-
-      <div class="section-title">
-        <span>SKILLS</span>
-        <h2>Technologies I Use</h2>
-      </div>
-
-      <div class="skills-grid">
-
-        <div class="skill-card">
-          <i class="ri-html5-fill"></i>
-          <p>HTML</p>
-        </div>
-
-        <div class="skill-card">
-          <i class="ri-css3-fill"></i>
-          <p>CSS</p>
-        </div>
-
-        <div class="skill-card">
-          <i class="ri-javascript-fill"></i>
-          <p>JavaScript</p>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="projects glass" id="projects">
-
-      <div class="projects-header">
-
-        <div class="section-title">
-          <span>PROJECTS</span>
-          <h2>Some Things I've Built</h2>
-        </div>
-
-        <a href="#">
-          View All Projects
-          <i class="ri-arrow-right-line"></i>
-        </a>
-
-      </div>
-
-         <div class="project-grid">
-        <!-- CARD -->
-      
-      <div class="project-card-wrapper">
-
-    <!-- GitHub Button -->
-    <a href="https://github.com/raisyatulalya24/prompcraft.ai"
-       target="_blank"
-       class="github-btn"
-       onclick="event.stopPropagation();">
-        <i class="ri-github-fill"></i>
-    </a>
-
-    <!-- Card -->
-       
-    <a href="https://prompcraft-ai.infinityfreeapp.com/"
-       target="_blank"
-       class="project-card">
-
-        <img src="pc.jpg" alt="PromptCraft AI"/>
-
-        <div class="project-content">
-
-            <div class="project-top">
-                <h3>PromptCraft AI</h3>
-                <i class="ri-external-link-line"></i>
-            </div>
-
-            <p>
-                AI-powered prompt engineering platform built with PHP,
-                MariaDB, JavaScript, HTML, CSS, and Groq API. Features
-                prompt generation, prompt improvement, analytics dashboard,
-                favorites, and prompt history.
-            </p>
-
-            <div class="badges">
-                <span>PHP</span>
-                <span>MariaDB</span>
-                <span>Groq API</span>
-            </div>
-
-        </div>
-
-    </a>
-
-</div>
-      
-       <a
-    href="https://raisyatulalya24.github.io/todoist/"
-    target="_blank"
-    class="project-card"
-    >
-
-    <img
-        src="td.png"
-        alt=""
-    />
-
-    <div class="project-content">
-
-        <div class="project-top">
-        <h3>Habit Tracker</h3>
-        <i class="ri-external-link-line"></i>
     </div>
-
-            <p>
-            Website to-do list modern dengan tampilan clean dan interaktif untuk membantu mengatur aktivitas harian, target, dan produktivitas secara lebih rapi dan efisien.
-
-            </p>
-
-            <div class="badges">
-            <span>journaling dashboard</span>
-            <span>sleep tracker</span>
-            <span>pomodoro time</span>
-            </div>
-
-        </div>
-        </a>
-
-          <a href="https://raisyatulalya24.github.io/smartMove/" target="_blank" class="project-card">
-      <img src="sm.png" alt="" />
-
-      <div class="project-content">
-        <div class="project-top">
-          <h3>Aduan System (Google Apps Script)</h3>
-          <i class="ri-external-link-line"></i>
-        </div>
-
-        <p>
-          Sistem pengaduan berbasis web dengan Google Sheets & email notification.
-        </p>
-
-        <div class="badges">
-          <span>Google Apps Script</span>
-          <span>Google Sheets API</span>
-          <span>Email Notification</span>
-        </div>
-      </div>
-    </a>
-            <a
-        href="https://raisyatulalya24.github.io/casavela-interior-design/"
-        target="_blank"
-        class="project-card"
-        >
-
-        <img
-            src="casavela.jpg"
-            alt=""
-        />
-
-        <div class="project-content">
-
-            <div class="project-top">
-            <h3>Desain Interior</h3>
-            <i class="ri-external-link-line"></i>
-            </div>
-
-            <p>
-                Website desain interior dengan tampilan modern dan elegan yang menampilkan berbagai inspirasi ruangan menggunakan konsep visual minimalis dan premium.
-            </p>
-
-            <div class="badges">
-            <span>Luxury Layout</span>
-            <span>Glassmorphism</span>
-            <span>Interactive UI</span>
-            </div>
-
-        </div>
-
-        </a>
-
-       
-        <a
-  href="https://raisyatulalya24.github.io/webkel-rpl/"
-  target="_blank"
-  class="project-card"
->
-
-  <img src="anime.jpg" alt="" />
-
-  <div class="project-content">
-
-    <div class="project-top">
-      <h3>Anime Streaming Platform</h3>
-      <i class="ri-external-link-line"></i>
-    </div>
-
-    <p>
-      Website streaming anime dengan tampilan modern dan penyusunan konten yg terstruktur.
-    </p>
-
-    <div class="badges">
-      <span>category populer</span>
-      <span>top rating</span>
-      <span>Interactive homepage UI</span>
-    </div>
-
   </div>
 
-</a>
-      </section>
-
-    <!-- EXPERIENCE -->
-    <section class="experience glass" id="experience">
-
-      <div class="section-title">
-        <span>EXPERIENCE</span>
-        <h2>My Journey</h2>
-      </div>
-
-      <div class="timeline">
-
-        <div class="timeline-card">
-
-          <span class="year">2024 - Present</span>
-
-          <h3>Informatics Engineering Student</h3>
-
-          <p>
-            Learning software engineering, algorithms, databases,
-            and modern frontend development.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
-<section class="contact glass" id="contact">
-
-  <div class="contact-text">
-
-    <span>CONTACT</span>
-
-    <h2>Let's Work Together!</h2>
-
-    <p>
-      Feel free to contact me for collaboration,
-      freelance, or project discussion.
-    </p>
-
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Frontend Development</span>
+      <span class="marquee-item">UI / UX Design</span>
+      <span class="marquee-item">Web Applications</span>
+      <span class="marquee-item">Responsive Design</span>
+      <span class="marquee-item">Frontend Development</span>
+      <span class="marquee-item">UI / UX Design</span>
+      <span class="marquee-item">Web Applications</span>
+      <span class="marquee-item">Responsive Design</span>
+    </div>
   </div>
-
-  <div class="contact-buttons">
-
-    <!-- WHATSAPP -->
-    <a
-      href="https://wa.me/6285373158760"
-      target="_blank"
-      class="primary-btn"
-    >
-      <i class="ri-whatsapp-line"></i>
-      WhatsApp
-    </a>
-
-    <!-- INSTAGRAM -->
-    <a
-      href="https://www.instagram.com/raisyatullya?igsh=c3R5bWF1MXE5dg=="
-      target="_blank"
-      class="secondary-btn"
-    >
-      <i class="ri-instagram-line"></i>
-      Instagram
-    </a>
-
-    <!-- EMAIL -->
-    <a
-      href="mailto:raisyatulalya6@gmail.com"
-      class="secondary-btn"
-    >
-      <i class="ri-mail-line"></i>
-      Email
-    </a>
-
-  </div>
-
 </section>
 
-  </main>
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="section reveal" id="about">
+  <div class="section-label">About — 01</div>
+  <h2 class="section-title">Get to <em class="gold-text">know me</em></h2>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Saya merupakan mahasiswa Teknik Informatika yang memiliki minat pada pengembangan website, terutama di bidang frontend dan desain antarmuka. Saya tertarik membuat tampilan website yang modern, rapi, serta nyaman digunakan.
+      </p>
+      <p>
+        Melalui beberapa project yang telah dikerjakan, saya terus belajar dan mengembangkan kemampuan dalam coding, desain, dan pembuatan website yang responsif serta interaktif.
+      </p>
+    </div>
+
+    <div class="about-info-list">
+      <div class="info-row">
+        <span class="label">Name</span>
+        <span class="value">Raisyatul Alya</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Location</span>
+        <span class="value">Aceh, Indonesia</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Education</span>
+        <span class="value">Informatics Engineering</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Email</span>
+        <span class="value">raisyatulalya6@gmail.com</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Status</span>
+        <span class="value">Open to collaborate</span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="num">01+</div>
+        <div class="desc">Years Learning</div>
+      </div>
+      <div class="stat">
+        <div class="num">06+</div>
+        <div class="desc">Projects Built</div>
+      </div>
+      <div class="stat">
+        <div class="num">∞</div>
+        <div class="desc">Curiosity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section class="section reveal" id="skills">
+  <div class="section-label">Skills — 02</div>
+  <h2 class="section-title">Tools I <em class="gold-text">work with</em></h2>
+
+  <div class="skills-wrap">
+    <div class="skill">
+      <i class="ri-html5-fill"></i>
+      <div class="name">HTML5</div>
+      <div class="sub">Structure</div>
+    </div>
+    <div class="skill">
+      <i class="ri-css3-fill"></i>
+      <div class="name">CSS3</div>
+      <div class="sub">Styling</div>
+    </div>
+    <div class="skill">
+      <i class="ri-javascript-fill"></i>
+      <div class="name">JavaScript</div>
+      <div class="sub">Interaction</div>
+    </div>
+    <div class="skill">
+      <i class="ri-code-s-slash-line"></i>
+      <div class="name">PHP</div>
+      <div class="sub">Backend</div>
+    </div>
+    <div class="skill">
+      <i class="ri-database-2-line"></i>
+      <div class="name">MariaDB</div>
+      <div class="sub">Database</div>
+    </div>
+    <div class="skill">
+      <i class="ri-github-fill"></i>
+      <div class="name">GitHub</div>
+      <div class="sub">Versioning</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS — BENTO GRID ═══════════ -->
+<section class="section reveal" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label">Projects — 03</div>
+      <h2 class="section-title">Selected <em class="gold-text">works</em></h2>
+    </div>
+    <a href="https://github.com/raisyatulalya24" target="_blank" class="view-all">
+      View Archive <i class="ri-arrow-right-line"></i>
+    </a>
+  </div>
+
+  <div class="bento">
+
+    <!-- 01 — PromptCraft AI (FEATURED) -->
+    <div class="card featured">
+      <span class="card-num">01</span>
+      <a href="https://github.com/raisyatulalya24/prompcraft.ai"
+         target="_blank" class="card-github" onclick="event.stopPropagation();">
+        <i class="ri-github-fill"></i>
+      </a>
+      <a href="https://prompcraft-ai.infinityfreeapp.com/" target="_blank" style="display:contents;">
+        <div class="card-img">
+          <img src="pc.png" alt="PromptCraft AI" />
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3 class="card-title">PromptCraft AI</h3>
+            <i class="ri-arrow-right-up-line card-arrow"></i>
+          </div>
+          <p class="card-desc">
+            AI-powered prompt engineering platform built with PHP, MariaDB, JavaScript, and Groq API. Features prompt generation, improvement, analytics dashboard, favorites, and history.
+          </p>
+          <div class="card-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">MariaDB</span>
+            <span class="tag">Groq API</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+      <!-- 07 — Smart Attendance -->
+  <a href="https://raisyatulalya24.github.io/AbsensiQR/" target="_blank" class="card">
+    <span class="card-num">02</span>
+    <div class="card-img">
+      <img src="qr.jpg" alt="Smart Attendance" />
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <h3 class="card-title">Smart Attendance</h3>
+        <i class="ri-arrow-right-up-line card-arrow"></i>
+      </div>
+      <p class="card-desc">
+        Sistem absensi berbasis QR Code — mahasiswa scan, kehadiran tercatat otomatis, dengan dashboard real-time untuk dosen dan admin.
+      </p>
+      <div class="card-tags">
+        <span class="tag">QR Code</span>
+        <span class="tag">Real-time</span>
+        <span class="tag">Dashboard</span>
+      </div>
+    </div>
+  </a>
+
+
+    <!-- 03 — Aduan System (MEDIUM) -->
+    <a href="https://raisyatulalya24.github.io/smartMove/" target="_blank" class="card medium">
+      <span class="card-num">03</span>
+      <div class="card-img">
+        <img src="sm.jpg" alt="Aduan System" />
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-title">Aduan System</h3>
+          <i class="ri-arrow-right-up-line card-arrow"></i>
+        </div>
+        <p class="card-desc">
+          Sistem pengaduan berbasis web dengan Google Sheets & email notification untuk mempermudah pelaporan dan tindak lanjut secara real-time.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">Sheets API</span>
+        </div>
+      </div>
+    </a>
+
+        <!-- 02 — Habit Tracker (LARGE) -->
+    <a href="https://raisyatulalya24.github.io/todoist/" target="_blank" class="card large">
+      <span class="card-num">04</span>
+      <div class="card-img">
+        <img src="todoist.png" alt="Habit Tracker" />
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-title">Habit Tracker</h3>
+          <i class="ri-arrow-right-up-line card-arrow"></i>
+        </div>
+        <p class="card-desc">
+          Website to-do list modern dengan tampilan clean dan interaktif untuk membantu mengatur aktivitas harian, target, dan produktivitas secara lebih rapi dan efisien.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Journaling</span>
+          <span class="tag">Sleep Tracker</span>
+          <span class="tag">Pomodoro</span>
+        </div>
+      </div>
+    </a>
+
+              <!-- 06 — Warisan Kita -->
+  <a href="https://raisyatulalya24.github.io/WarisanKita/" target="_blank" class="card">
+    <span class="card-num">05</span>
+    <div class="card-img">
+      <img src="wk.jpg" alt="Warisan Kita" />
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <h3 class="card-title">Warisan Kita</h3>
+        <i class="ri-arrow-right-up-line card-arrow"></i>
+      </div>
+      <p class="card-desc">
+        Rumah digital modern tempat harta kuliner, cerita, dan budaya Aceh hidup — menjelajah 23 wilayah, cerita rakyat, dan UMKM lokal dalam satu platform.
+      </p>
+      <div class="card-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Interactive Map</span>
+        <span class="tag">Storytelling</span>
+      </div>
+    </div>
+  </a>
+
+    <!-- 04 — Casavela (MEDIUM) -->
+    <a href="https://raisyatulalya24.github.io/casavela-interior-design/" target="_blank" class="card medium">
+      <span class="card-num">06</span>
+      <div class="card-img">
+        <img src="casavela.jpg" alt="Casavela Interior Design" />
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-title">Casavela Interior</h3>
+          <i class="ri-arrow-right-up-line card-arrow"></i>
+        </div>
+        <p class="card-desc">
+          Website desain interior dengan tampilan modern dan elegan yang menampilkan berbagai inspirasi ruangan menggunakan konsep visual minimalis dan premium.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Luxury Layout</span>
+          <span class="tag">Glassmorphism</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 05 — Anime Streaming (WIDE) -->
+    <a href="https://raisyatulalya24.github.io/webkel-rpl/" target="_blank" class="card wide">
+      <span class="card-num">07</span>
+      <div class="card-img">
+        <img src="anime.jpg" alt="Anime Streaming Platform" />
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="card-title">Anime Streaming</h3>
+          <i class="ri-arrow-right-up-line card-arrow"></i>
+        </div>
+        <p class="card-desc">
+          Website streaming anime dengan tampilan modern dan penyusunan konten yang terstruktur.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Popular</span>
+          <span class="tag">Top Rating</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section class="section reveal" id="experience">
+  <div class="section-label">Journey — 04</div>
+  <h2 class="section-title">My <em class="gold-text">journey</em></h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2024 — Present</div>
+      <h3 class="tl-title">Informatics Engineering Student</h3>
+      <p class="tl-desc">
+        Learning software engineering, algorithms, databases, and modern frontend development. Building real-world projects to sharpen both technical and design skills.
+      </p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025 — Present</div>
+      <h3 class="tl-title">Frontend Developer — Self Taught</h3>
+      <p class="tl-desc">
+        Building responsive websites and web apps using HTML, CSS, JavaScript, PHP, and modern design principles. Exploring UI/UX and interactive web experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="contact reveal" id="contact">
+  <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">Contact — 05</div>
+  <h2 class="contact-title">
+    Let's build<br>
+    <em>something together.</em>
+  </h2>
+  <p class="contact-sub">
+    Open for collaboration, freelance projects, or just a friendly chat about code and design.
+  </p>
+
+  <div class="contact-links">
+    <a href="https://wa.me/6285373158760" target="_blank" class="contact-link gold">
+      <i class="ri-whatsapp-line"></i> WhatsApp
+    </a>
+    <a href="mailto:raisyatulalya6@gmail.com" class="contact-link">
+      <i class="ri-mail-line"></i> Email Me
+    </a>
+    <a href="https://www.instagram.com/raisyatullya" target="_blank" class="contact-link">
+      <i class="ri-instagram-line"></i> Instagram
+    </a>
+    <a href="https://github.com/raisyatulalya24" target="_blank" class="contact-link">
+      <i class="ri-github-fill"></i> GitHub
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div>© 2025 Raisyatul Alya</div>
+  <div>Designed with <span class="heart">♥</span> & lots of <span class="heart">&lt;/&gt;</span></div>
+</footer>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+  // Navbar shrink saat scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Active nav link berdasarkan section
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 200) {
+        current = sec.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Scroll reveal animation
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
